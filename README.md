@@ -12,6 +12,6 @@ $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
 $lesInformations = $mysqli->query($laQuestionEnSql);
 ### Boucler pour creeer autant d'élément HTML que d'entrée dans la BDD
 while ($tag = $lesInformations->fetch_assoc()){
-    <h3><?php echo $tag['alias'] ?></h3>
+   ```<h3><?php echo $tag['alias'] ?></h3>```
 }
 
