@@ -1,5 +1,7 @@
 # projet-collectif-reseau-social-php-printteam
 
+## Track Jour 1 : 07 Octobre 2024
+
 ## Niveau 1 :
 
 ### Introduction au PHP :
@@ -11,7 +13,14 @@ $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
 ### Envoi de la requête SQL :
 $lesInformations = $mysqli->query($laQuestionEnSql);
 ### Boucler pour creeer autant d'élément HTML que d'entrée dans la BDD
+```
 while ($tag = $lesInformations->fetch_assoc()){
-   ```<h3><?php echo $tag['alias'] ?></h3>```
+   <h3><?php echo $tag['alias'] ?></h3>
 }
+```
+## Définition des configurations pour nos machines : 
+.editorconfig : configurations par défaut
+.gitignore : ajout de connect.php pour nos requêtes d'authentifications à notre phpmyadmin qui sont différentes selons nos machines au sein du groupe
+
+
 
