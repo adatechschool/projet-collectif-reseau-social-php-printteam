@@ -22,5 +22,7 @@ while ($tag = $lesInformations->fetch_assoc()){
 .editorconfig : configurations par défaut
 .gitignore : ajout de connect.php pour nos requêtes d'authentifications à notre phpmyadmin qui sont différentes selons nos machines au sein du groupe
 
+## Track Jour 2 : 08 Octobre 2024
 
+Ajout d'une approche "variable d'environnement" pour la connexion à nos serveurs SQL sous la forme "password.php" qui est dans gitignore, et connect.php qui inclus password.php.
 
