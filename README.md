@@ -24,6 +24,9 @@ while ($tag = $lesInformations->fetch_assoc()){
 
 ## Track Jour 2 : 08 Octobre 2024
 
-Ajout d'une approche "variable d'environnement" pour la connexion à nos serveurs SQL sous la forme "password.php" qui est dans gitignore, et connect.php qui inclus password.php.
-Debug des fichiers login.php, registration.php & userpedpost.php
-Notion de super variable comme $_SESSION qui nous permet de stocker l'id de l'tilisateur actuellement connecté
+- Ajout d'une approche "variable d'environnement" pour la connexion à nos serveurs SQL sous la forme "password.php" qui est dans gitignore, et connect.php qui inclus password.php.
+- Debug des fichiers login.php, registration.php & userpedpost.php
+- Notion de super variable comme $_SESSION qui nous permet de stocker l'id de l'tilisateur actuellement connecté.
+- Refactorisation de n1 & n2, header.php et connect.php
+- Création de session et super globale de session pour naviguer dans toutes les pages avec notre id de connexion
+- Création du formulaire pour pouvoir créer un message qui sera publié sur notre mur (requête SQL ok)
