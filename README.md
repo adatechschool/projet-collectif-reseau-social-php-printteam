@@ -25,4 +25,5 @@ while ($tag = $lesInformations->fetch_assoc()){
 ## Track Jour 2 : 08 Octobre 2024
 
 Ajout d'une approche "variable d'environnement" pour la connexion à nos serveurs SQL sous la forme "password.php" qui est dans gitignore, et connect.php qui inclus password.php.
-
+Debug des fichiers login.php, registration.php & userpedpost.php
+Notion de super variable comme $_SESSION qui nous permet de stocker l'id de l'tilisateur actuellement connecté
