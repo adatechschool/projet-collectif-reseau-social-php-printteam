@@ -42,7 +42,7 @@
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']?>
+                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $userId?>
                         (n° <?php echo $userId ?>)
                     </p>
                 </section>
@@ -92,8 +92,41 @@
                         </footer>
                     </article>
                 <?php } ?>
-
-
+                <?php
+                $enCoursDeTraitement = isset($_POST['message']);
+                    if ($enCoursDeTraitement)
+                    {                        
+                        $postContent = $_POST['message'];
+                     
+                        $postContent = $mysqli->real_escape_string($postContent);
+                        //Etape 4 : construction de la requete
+                        $lInstructionSql = "INSERT INTO posts "
+                                . "(id, user_id, content, created, parent_id) "
+                                . "VALUES (NULL, "
+                                . $_SESSION["connected_id"] . ", "
+                                . "'" . $postContent . "', "
+                                . "NOW(), "
+                                . "NULL);"
+                                ;
+                        // echo $lInstructionSql;
+                        // Etape 5 : execution
+                        $ok = $mysqli->query($lInstructionSql);
+                        if ( ! $ok)
+                        {
+                            echo "Impossible d'ajouter le message: " . $mysqli->error;
+                        } else
+                        {
+                            echo "Message posté.";
+                        }
+                    }
+                    ?>       
+                <form action="wall.php?user_id=<?php echo $_SESSION["connected_id"] ?>" method="post">
+                        <dl>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                    </form> 
             </main>
         </div>
     </body>
