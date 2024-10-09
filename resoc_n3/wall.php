@@ -81,8 +81,7 @@
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
                 while ($post = $lesInformations->fetch_assoc())
-                {
-
+                { 
                     //echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>                
                     <article>
@@ -94,9 +93,14 @@
                             <p><?= $post['content']?></p>
                         </div>                                            
                         <footer>
-                            <small>♥ <?= $post['like_number']?></small>
+                            <form action="like.php" method="get">
+                                <a href="like.php?post_id=29">
+                                    <small>♥ <?= $post['like_number']?></small>
+                                </a>
+                            </form>
                             <a href="">#<?= $post['taglist']?></a>
                         </footer>
+                        <?php include("like.php");  ?>
                     </article>
                 <?php } ?>
                 <?php
@@ -126,7 +130,6 @@
                             echo "Message posté.";
                             header('Location: wall.php?user_id=' . $_SESSION["connected_id"]);
                             exit(); 
-
                         }
                     }
                     ?>       
