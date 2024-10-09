@@ -85,6 +85,14 @@
                             <input type="checkbox" required /> J'accepte que mes données soient stockées et traitées.
                         </label>
                     </form>
+                    <p>Conformément à la réglementation, vous disposez des droits suivants sur vos données personnelles :</p>
+                        <ul>
+                        <li>Accéder à vos données</li>
+                        <li>Rectifier vos informations personnelles</li>
+                        <li>Demander l'effacement de vos données</li>
+                        <li>Retirer votre consentement à tout moment</li>
+                        </ul>
+                        <p>Pour exercer ces droits, veuillez nous contacter à l'adresse suivante : <a href="mailto:privacy@votre-site.com">privacy@votre-site.com</a></p>
                 </article>
             </main>
         </div>
