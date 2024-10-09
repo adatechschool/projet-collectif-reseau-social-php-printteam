@@ -30,3 +30,9 @@ while ($tag = $lesInformations->fetch_assoc()){
 - Refactorisation de n1 & n2, header.php et connect.php
 - Création de session et super globale de session pour naviguer dans toutes les pages avec notre id de connexion
 - Création du formulaire pour pouvoir créer un message qui sera publié sur notre mur (requête SQL ok)
+
+## Track Jour 3 : 09 Octobre 2024 
+
+- Création du fichier like.php qui permet de vérifier si on a déjà liké un post en intérogeant la base de donnée, si c'est déjà liké alors on unlike en envoyant une requête SQL pour delete la ligne du like, s'il n'y a pas de like alors on insert une ligne dans la bdd pour liker le post
+- formulaire bouton like/unlike dans le fichier wall.php, la methode=post d'action like.php
+- la redirection depuis like.php vers wall.php user id ne fonctionne pas à la fin de l'execution de like.php
