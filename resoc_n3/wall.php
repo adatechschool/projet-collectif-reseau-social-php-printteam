@@ -60,7 +60,7 @@
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -76,12 +76,12 @@
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
                 while ($post = $lesInformations->fetch_assoc())
                 { 
+                    
                     //echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>                
                     <article>
@@ -93,14 +93,13 @@
                             <p><?= $post['content']?></p>
                         </div>                                            
                         <footer>
-                            <form action="like.php" method="get">
-                                <a href="like.php?post_id=29">
+                                <a href="like.php?post_id=<?php echo $post['id']?>">
+                                    <?php include("like.php");  ?>
                                     <small>♥ <?= $post['like_number']?></small>
                                 </a>
-                            </form>
                             <a href="">#<?= $post['taglist']?></a>
+                            //bouton like/unlike
                         </footer>
-                        <?php include("like.php");  ?>
                     </article>
                 <?php } ?>
                 <?php
