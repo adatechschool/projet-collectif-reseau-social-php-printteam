@@ -48,6 +48,13 @@
                 </section>
             </aside>
             <main>
+                <form action="wall.php" method="post">
+                        <dl>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                </form> 
                 <?php
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
@@ -117,16 +124,13 @@
                         } else
                         {
                             echo "Message posté.";
+                            header('Location: wall.php?user_id=' . $_SESSION["connected_id"]);
+                            exit(); 
+
                         }
                     }
                     ?>       
-                <form action="wall.php?user_id=<?php echo $_SESSION["connected_id"] ?>" method="post">
-                        <dl>
-                            <dt><label for='message'>Message</label></dt>
-                            <dd><textarea name='message'></textarea></dd>
-                        </dl>
-                        <input type='submit'>
-                    </form> 
+             
             </main>
         </div>
     </body>
