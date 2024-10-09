@@ -9,6 +9,7 @@
     <body>
         <?php
         include("header.php");
+        
         ?>
         <div id="wrapper">
             <?php
@@ -94,11 +95,13 @@
                         </div>                                            
                         <footer>
                                 <a href="like.php?post_id=<?php echo $post['id']?>">
-                                    <?php include("like.php");  ?>
                                     <small>♥ <?= $post['like_number']?></small>
                                 </a>
                             <a href="">#<?= $post['taglist']?></a>
-                            //bouton like/unlike
+                            <form method=post action="wall.php">
+                            <input type="hidden" name="post_id" value="<?=$post['id']?>">
+                            <button type="submit">♥</button>
+                            </form>
                         </footer>
                     </article>
                 <?php } ?>
