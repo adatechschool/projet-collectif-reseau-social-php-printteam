@@ -76,23 +76,18 @@
                             <dd><input aria-describedby="la chaaaaaatte password" type='password'name='motpasse'></dd>
                         </dl>
                         <input type='submit'>
-                    </form>
-                </article>
-                <article>
-                    <form action="" method="post">
                         <p>Nous collectons vos données personnelles pour vous offrir un service personnalisé. En acceptant, vous consentez à ce que nous stockions et traitions ces données conformément à notre <a href="/privacy-policy">politique de confidentialité</a>.</p>
                         <label>
                             <input type="checkbox" required /> J'accepte que mes données soient stockées et traitées.
                         </label>
-                    </form>
-                    <p>Conformément à la réglementation, vous disposez des droits suivants sur vos données personnelles :</p>
+                        <p>Conformément à la réglementation, vous disposez des droits suivants sur vos données personnelles :</p>
                         <ul>
-                        <li>Accéder à vos données</li>
-                        <li>Rectifier vos informations personnelles</li>
-                        <li>Demander l'effacement de vos données</li>
-                        <li>Retirer votre consentement à tout moment</li>
+                            <li>Accéder à vos données</li>
+                            <li>Rectifier vos informations personnelles</li>
+                            <li>Demander l'effacement de vos données</li>
+                            <li>Retirer votre consentement à tout moment</li>
                         </ul>
-                        <p>Pour exercer ces droits, veuillez nous contacter à l'adresse suivante : <a href="mailto:privacy@votre-site.com">privacy@votre-site.com</a></p>
+                    </form>
                 </article>
             </main>
         </div>
