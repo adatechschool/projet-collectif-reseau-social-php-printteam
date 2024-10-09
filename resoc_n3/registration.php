@@ -68,14 +68,22 @@
                     ?>                     
                     <form action="registration.php" method="post">
                         <dl>
-                            <dt><label for='pseudo'>Pseudo</label></dt>
-                            <dd><input type='text'name='pseudo'></dd>
-                            <dt><label for='email'>E-Mail</label></dt>
-                            <dd><input type='email'name='email'></dd>
-                            <dt><label for='motpasse'>Mot de passe</label></dt>
-                            <dd><input type='password'name='motpasse'></dd>
+                            <dt><label  for='pseudo'>Pseudo</label></dt>
+                            <dd><input aria-describedby="la chaaaaaatte pseudo" type='text'name='pseudo'></dd>
+                            <dt><label  for='email'>E-Mail</label></dt>
+                            <dd><input aria-describedby="la chaaaaaatte email" type='email'name='email'></dd>
+                            <dt><label  for='motpasse'>Mot de passe</label></dt>
+                            <dd><input aria-describedby="la chaaaaaatte password" type='password'name='motpasse'></dd>
                         </dl>
                         <input type='submit'>
+                    </form>
+                </article>
+                <article>
+                    <form action="" method="post">
+                        <p>Nous collectons vos données personnelles pour vous offrir un service personnalisé. En acceptant, vous consentez à ce que nous stockions et traitions ces données conformément à notre <a href="/privacy-policy">politique de confidentialité</a>.</p>
+                        <label>
+                            <input type="checkbox" required /> J'accepte que mes données soient stockées et traitées.
+                        </label>
                     </form>
                 </article>
             </main>
