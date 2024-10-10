@@ -1,12 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-} // Démarrer la session
-if (!isset($_SESSION['connected_id'])) {
-    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header('Location: login.php');
-    exit();
-}
+require "session.php";
 ?>
 
 <!doctype html>
@@ -84,6 +77,7 @@ if (!isset($_SESSION['connected_id'])) {
                         <footer>
                             <form method="post" action="like.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <input type="hidden" name="page" value="wall">
                                 <button type="submit">♥ <?= $post['like_number'] ?></button>
                             </form>
                             <a href="">#<?= $post['taglist'] ?></a>

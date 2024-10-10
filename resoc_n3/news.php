@@ -1,3 +1,8 @@
+<?php
+require "session.php";
+?>
+
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -9,6 +14,7 @@
     <body>
         <?php
         include("header.php");
+        $userId = intval($_SESSION['connected_id']);
         ?>
         <div id="wrapper">
             <aside>
@@ -68,7 +74,7 @@
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
                     SELECT posts.content,
-                    posts.created,
+                    posts.created, posts.id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -114,8 +120,11 @@
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
-                            <small>♥ <?php echo $post['like_number'] ?> </small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>,
+                            <form method="post" action="like.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <button type="submit">♥ <?= $post['like_number'] ?></button>
+                            </form>
+                            <a href="">#<?= $post['taglist'] ?></a>
                         </footer>
                     </article>
                     <?php
