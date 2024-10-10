@@ -1,7 +1,6 @@
 <?php
 require "session.php";
 include "connect.php";
-var_dump($_SERVER);
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['connected_id'])) {
@@ -9,11 +8,6 @@ if (!isset($_SESSION['connected_id'])) {
     exit();
 }
 
-if (isset($_POST['page']) == 'wall') {
-    $redirection = "wall.php?user_id=" . $_GET['user_id'];
-} elseif (isset($_POST['page'])== 'news') {
-    $redirection = "news.php";
-}
 // Vérifier si un post_id est fourni
 if (isset($_POST['post_id'])) {
     $connectionId = $_SESSION["connected_id"]; // id de l'utilisateur connecté
@@ -32,8 +26,8 @@ if (isset($_POST['post_id'])) {
         $mysqli->query("DELETE FROM likes WHERE user_id = $connectionId AND post_id = $postId");
     }
 
-    // Redirection vers le mur actuel après l'action
-    header('Location:' . $redirection);
+    // Redirection vers la page actuelle après l'action
+    header('Location:' . $_SERVER["HTTP_REFERER"]);
     exit();
 
 } else {

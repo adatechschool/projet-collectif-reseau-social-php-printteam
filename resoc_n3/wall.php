@@ -77,7 +77,6 @@ require "session.php";
                         <footer>
                             <form method="post" action="like.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                                <input type="hidden" name="page" value="wall">
                                 <button type="submit">♥ <?= $post['like_number'] ?></button>
                             </form>
                             <a href="">#<?= $post['taglist'] ?></a>
