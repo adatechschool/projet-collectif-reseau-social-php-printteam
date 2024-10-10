@@ -1,38 +1,37 @@
-<?php 
-session_start();
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include "connect.php";
 
-//<bouton> id name
-//$id du post qu'on doit récupérer dans la requel sql
-//$lesInformations --> l'id du post
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['connected_id'])) {
+    echo "Erreur : Vous devez être connecté pour liker un post.";
+    exit();
+}
 
-var_dump($_SESSION['connected_id']);
+// Vérifier si un post_id est fourni
+if (isset($_POST['post_id'])) {
+    $connectionId = $_SESSION["connected_id"]; // id de l'utilisateur connecté
+    $postId = intval($_POST['post_id']); // id du post
 
-if(isset($_POST['post_id']) && isset($_SESSION["connected_id"])){
-    $connectionId= $_SESSION["connected_id"]; //id de moi connecté
-    $prout = $_POST['post_id'];
-    echo $connectionId;
+    // Vérifier si j'ai déjà liké ce post
+    $checkLikeQuery = "SELECT * FROM likes WHERE user_id = $connectionId AND post_id = $postId";
+    $infosLikes = $mysqli->query($checkLikeQuery);
 
-    // Vérifier si j'ai déjà à déjà aimé ce post
-    //requete SQL pour vérifier si la ligne existe dans la BDD
-    $checkLikeQuery ="SELECT * FROM likes WHERE user_id = $connectionId AND post_id=$prout";
-    $infosLikes=$mysqli->query($checkLikeQuery);
-    $result = $infosLikes->fetch_assoc();
-
-    //var_dump($result);
-    if ($infosLikes -> num_rows < 1){
-        $result = $mysqli -> query("INSERT INTO likes (id, user_id, post_id) VALUES (NULL, $connectionId, $prout)");
-        header('Location: wall.php?user_id=' . $connectionId);
-        
-//si $result->num_rows est <1 alors on like
-//else $result->num_rows >0 alors on unlike
+    if ($infosLikes->num_rows < 1) {
+        // Si pas encore liké, ajouter un like
+        $mysqli->query("INSERT INTO likes (id, user_id, post_id) VALUES (NULL, $connectionId, $postId)");
     } else {
-        $result = $mysqli -> query("DELETE FROM likes WHERE user_id = $connectionId AND post_id=$prout");
-        header('Location: wall.php?user_id=' . $connectionId);
-        
+        // Sinon, retirer le like
+        $mysqli->query("DELETE FROM likes WHERE user_id = $connectionId AND post_id = $postId");
     }
 
-}else{
-    echo "pwet";
+    // Redirection vers le mur actuel après l'action
+    header('Location: wall.php?user_id=' . $_GET['user_id']);
+    exit();
+
+} else {
+    echo "Erreur : Aucun post sélectionné pour être liké.";
 }
- ; ?>
+?>

@@ -1,3 +1,14 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} // Démarrer la session
+if (!isset($_SESSION['connected_id'])) {
+    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,135 +18,98 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <?php
-        include("header.php");
+        <?php include("header.php"); ?>
         
-        ?>
         <div id="wrapper">
             <?php
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
-             * La première étape est donc de trouver quel est l'id de l'utilisateur
-             * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-             * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-             * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
-             */
-            $userId =intval($_GET['user_id']);
-            ?>
-            <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
+            // Récupérer l'id de l'utilisateur via le paramètre GET
+            $userId = intval($_GET['user_id']);
+            
+            // Connexion à la base de données
             include "connect.php";
-            ?>
 
+            // Récupérer les informations de l'utilisateur
+            $laQuestionEnSql = "SELECT * FROM users WHERE id='$userId'";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            ?>
+            
             <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */                
-                $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                //echo "<pre>" . print_r($user, 1) . "</pre>";
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="user.jpg" alt="Portrait de l'utilisateur"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $userId?>
-                        (n° <?php echo $userId ?>)
-                    </p>
+                    <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?> (n° <?= $userId ?>)</p>
                 </section>
             </aside>
+            
             <main>
                 <form action="wall.php" method="post">
-                        <dl>
-                            <dt><label for='message'>Message</label></dt>
-                            <dd><textarea name='message'></textarea></dd>
-                        </dl>
-                        <input type='submit'>
+                    <dl>
+                        <dt><label for='message'>Message</label></dt>
+                        <dd><textarea name='message'></textarea></dd>
+                    </dl>
+                    <input type='submit' value="Envoyer">
                 </form> 
+                
                 <?php
-                /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
-                 */
+                // Récupérer tous les messages de l'utilisateur
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, posts.id,
-                    COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+                    COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist
                     FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE posts.user_id='$userId' 
+                    JOIN users ON users.id = posts.user_id
+                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+                    LEFT JOIN tags ON posts_tags.tag_id = tags.id
+                    LEFT JOIN likes ON likes.post_id = posts.id
+                    WHERE posts.user_id = '$userId'
                     GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
-                while ($post = $lesInformations->fetch_assoc())
-                { 
+                    ORDER BY posts.created DESC";
                     
-                    //echo "<pre>" . print_r($post, 1) . "</pre>";
-                    ?>                
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                if (!$lesInformations) {
+                    echo("Échec de la requête : " . $mysqli->error);
+                }
+                
+                // Parcourir les messages et afficher
+                while ($post = $lesInformations->fetch_assoc()) { 
+                    ?>
                     <article>
                         <h3>
-                            <time datetime='<?= $post['created']?>' ><?= $post['created']?></time>
+                            <time datetime="<?= $post['created'] ?>"><?= $post['created'] ?></time>
                         </h3>
-                        <address><?php echo $post['author_name']?></address>
+                        <address><?= $post['author_name'] ?></address>
                         <div>
-                            <p><?= $post['content']?></p>
-                        </div>                                            
+                            <p><?= $post['content'] ?></p>
+                        </div>
                         <footer>
-                                <a href="like.php?post_id=<?php echo $post['id']?>">
-                                    <small>♥ <?= $post['like_number']?></small>
-                                </a>
-                            <a href="">#<?= $post['taglist']?></a>
-                            <form method=post action="wall.php">
-                            <input type="hidden" name="post_id" value="<?=$post['id']?>">
-                            <button type="submit">♥</button>
+                            <form method="post" action="like.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <button type="submit">♥ <?= $post['like_number'] ?></button>
                             </form>
+                            <a href="">#<?= $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>
+                
                 <?php
-                $enCoursDeTraitement = isset($_POST['message']);
-                    if ($enCoursDeTraitement)
-                    {                        
-                        $postContent = $_POST['message'];
-                     
-                        $postContent = $mysqli->real_escape_string($postContent);
-                        //Etape 4 : construction de la requete
-                        $lInstructionSql = "INSERT INTO posts "
-                                . "(id, user_id, content, created, parent_id) "
-                                . "VALUES (NULL, "
-                                . $_SESSION["connected_id"] . ", "
-                                . "'" . $postContent . "', "
-                                . "NOW(), "
-                                . "NULL);"
-                                ;
-                        // echo $lInstructionSql;
-                        // Etape 5 : execution
-                        $ok = $mysqli->query($lInstructionSql);
-                        if ( ! $ok)
-                        {
-                            echo "Impossible d'ajouter le message: " . $mysqli->error;
-                        } else
-                        {
-                            echo "Message posté.";
-                            header('Location: wall.php?user_id=' . $_SESSION["connected_id"]);
-                            exit(); 
-                        }
+                // Gestion de l'envoi d'un message
+                if (isset($_POST['message'])) {
+                    $postContent = $mysqli->real_escape_string($_POST['message']);
+                    
+                    // Construction et exécution de la requête d'insertion
+                    $lInstructionSql = "
+                        INSERT INTO posts (id, user_id, content, created, parent_id)
+                        VALUES (NULL, {$_SESSION['connected_id']}, '$postContent', NOW(), NULL)";
+                    
+                    if (!$mysqli->query($lInstructionSql)) {
+                        echo "Impossible d'ajouter le message: " . $mysqli->error;
+                    } else {
+                        echo "Message posté.";
+                        header('Location: wall.php?user_id=' . $_SESSION['connected_id']);
+                        exit();
                     }
-                    ?>       
-             
+                }
+                ?>
             </main>
         </div>
     </body>
