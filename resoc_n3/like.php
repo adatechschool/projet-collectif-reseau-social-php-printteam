@@ -34,7 +34,3 @@ if (isset($_POST['post_id'])) {
     echo "Erreur : Aucun post sélectionné pour être liké.";
 }
 ?>
-
-
-
-<!-- 'http://localhost/reseau_social/resoc_n3/wall.php?user_id=8' -->

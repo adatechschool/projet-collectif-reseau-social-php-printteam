@@ -1,5 +1,6 @@
 <?php
 require "session.php";
+$userId = intval($_GET['user_id']);
 ?>
 
 <!doctype html>
@@ -24,7 +25,10 @@ require "session.php";
                         n° <?php echo intval($_GET['user_id']) ?>
                         suit les messages
                     </p>
-
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="user_id" value="<?= $userId ?>">
+                                <button type="submit">follow me</button>
+                    </form>
                 </section>
             </aside>
             <main class='contacts'>

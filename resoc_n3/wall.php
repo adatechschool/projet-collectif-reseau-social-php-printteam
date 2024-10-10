@@ -75,7 +75,8 @@ require "session.php";
                             <p><?= $post['content'] ?></p>
                         </div>
                         <footer>
-                            <form method="post" action="like.php?user_id=<?= $userId ?>">
+                            <!-- &action=ajoutelike" -->
+                            <form method="post" action="like.php?user_id=<?= $userId ?>"> 
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
                                 <button type="submit">♥ <?= $post['like_number'] ?></button>
                             </form>
