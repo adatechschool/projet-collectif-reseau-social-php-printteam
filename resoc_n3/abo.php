@@ -16,7 +16,6 @@ if (isset($_POST['user_id'])) {
     // Vérifier si j'ai déjà liké ce post
     $checkFollowQuery = "SELECT * FROM followers WHERE following_user_id = $connectionId AND followed_user_id = $postId";
     $infosFollow = $mysqli->query($checkFollowQuery);
-
     if ($infosFollow->num_rows < 1) {
         
         // Si pas encore liké, ajouter un like
