@@ -36,3 +36,9 @@ while ($tag = $lesInformations->fetch_assoc()){
 - Création du fichier like.php qui permet de vérifier si on a déjà liké un post en intérogeant la base de donnée, si c'est déjà liké alors on unlike en envoyant une requête SQL pour delete la ligne du like, s'il n'y a pas de like alors on insert une ligne dans la bdd pour liker le post
 - formulaire bouton like/unlike dans le fichier wall.php, la methode=post d'action like.php
 - la redirection depuis like.php vers wall.php user id ne fonctionne pas à la fin de l'execution de like.php
+
+## Track Jour 4 : 10 Octobre 2024
+
+- Gestion du bouton like et traitement
+- création du fichier abo qui gère le traitement follow/unfollow des users
+- refacto du bouton follow
