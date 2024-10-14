@@ -1,5 +1,8 @@
 <?php
 require "session.php";
+$userId = intval($_GET['user_id']);
+$monId = $_SESSION['connected_id'];
+include "utilesFonctions.php";
 ?>
 
 
@@ -52,6 +55,12 @@ require "session.php";
                         auxquel est abonnée l'utilisatrice <?= $user["alias"]?>
                         (n° <?php echo $userId ?>)
                     </p>
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="user_id" value="<?= $userId ?>">
+                                <button type="submit" class="button-1"><?php  
+                                    echo isFollowing($monId,$userId) ?"Unfollow":"Follow";
+                                    ?></button>
+                    </form>
 
                 </section>
             </aside>
@@ -62,7 +71,7 @@ require "session.php";
                  */
                 $laQuestionEnSql = "
                     SELECT posts.content,
-                    posts.created,
+                    posts.created,posts.id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -98,7 +107,10 @@ require "session.php";
                         <p><?= $post['content']?></p>
                     </div>                                            
                     <footer>
-                        <small>♥ <?= $post['like_number']?></small>
+                        <form method="post" action="like.php?user_id=<?= $userId ?>"> 
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
+                        </form>
                         <a href="">#<?= $post['taglist']?></a>,
                     </footer>
                 </article>

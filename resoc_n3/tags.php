@@ -1,5 +1,7 @@
 <?php
 require "session.php";
+$userId = $_SESSION['connected_id'];
+include "utilesFonctions.php";
 ?>
 
 <!doctype html>
@@ -60,7 +62,7 @@ require "session.php";
                  */
                 $laQuestionEnSql = "
                     SELECT posts.content,
-                    posts.created,
+                    posts.created,posts.id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -97,7 +99,10 @@ require "session.php";
                             <p><?= $post['content']?></p>
                         </div>                                            
                         <footer>
-                            <small>♥ <?= $post['like_number']?></small>
+                        <form method="post" action="like.php?user_id=<?= $userId ?>"> 
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
+                            </form>
                             <a href="">#<?= $post['taglist']?></a>
                         </footer>
                     </article>

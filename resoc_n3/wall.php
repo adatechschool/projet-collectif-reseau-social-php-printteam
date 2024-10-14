@@ -1,5 +1,8 @@
 <?php
 require "session.php";
+$userId = intval($_GET['user_id']);
+$monId = $_SESSION['connected_id'];
+include "utilesFonctions.php";
 ?>
 
 <!doctype html>
@@ -32,6 +35,12 @@ require "session.php";
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?></p>
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                        <input type="hidden" name="user_id" value="<?= $userId ?>">
+                        <button type="submit" class="button-1"><?php  
+                                    echo isFollowing($monId,$userId) ?"Unfollow":"Follow";
+                                    ?></button>
+                    </form>
                 </section>
             </aside>
             
@@ -48,7 +57,9 @@ require "session.php";
                 <?php
                 // Récupérer tous les messages de l'utilisateur
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, posts.id,
+                    SELECT posts.content, 
+                    posts.created, posts.id, 
+                    users.alias as author_name, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist
                     FROM posts
                     JOIN users ON users.id = posts.user_id
@@ -79,7 +90,7 @@ require "session.php";
                             <!-- &action=ajoutelike" -->
                             <form method="post" action="like.php?user_id=<?= $userId ?>"> 
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                                <button type="submit">♥ <?= $post['like_number'] ?></button>
+                                <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
                             </form>
                             <a href="">#<?= $post['taglist'] ?></a>
                         </footer>
