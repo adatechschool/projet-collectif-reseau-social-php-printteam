@@ -1,5 +1,8 @@
 <?php
 require "session.php";
+$userId = intval($_GET['user_id']);
+$monId = $_SESSION['connected_id'];
+include "utilesFonctions.php";
 ?>
 
 <!doctype html>
@@ -21,7 +24,14 @@ require "session.php";
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes qui
                         suivent les messages de l'utilisatrice
-                        n° <?php echo intval($_GET['user_id']) ?></p>
+                        n° <?php echo intval($_GET['user_id']) ?>
+                    </p>
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                        <input type="hidden" name="user_id" value="<?= $userId ?>">
+                        <button type="submit" class="button-1"><?php  
+                                    echo isFollowing($monId,$userId) ?"Unfollow":"Follow";
+                                    ?></button>
+                    </form>
 
                 </section>
             </aside>
@@ -49,6 +59,14 @@ require "session.php";
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                <button type="submit" class="button-1">
+                                    <?php  
+                                    echo isFollowing($monId,$user['id']) ?"Unfollow":"Follow";
+                                    ?>
+                                </button>
+                    </form>
                     <h3><?php echo $user["alias"] ; ?></h3>
                     <p>id:<?php echo $user["id"] ; ?></p> 
                 </article>

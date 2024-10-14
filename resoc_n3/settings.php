@@ -1,5 +1,8 @@
 <?php
 require "session.php";
+$userId = intval($_GET['user_id']);
+$monId = $_SESSION['connected_id'];
+include "utilesFonctions.php";
 ?>
 
 <!doctype html>
@@ -23,6 +26,12 @@ require "session.php";
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les informations de l'utilisatrice
                         n° <?php echo intval($_GET['user_id']) ?></p>
+                        <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                                <input type="hidden" name="user_id" value="<?= $userId ?>">
+                                <button type="submit" class="button-1"><?php  
+                                    echo isFollowing($monId,$userId) ?"Unfollow":"Follow";
+                                    ?></button>
+                    </form>
 
                 </section>
             </aside>
