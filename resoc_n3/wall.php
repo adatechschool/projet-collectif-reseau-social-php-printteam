@@ -31,12 +31,12 @@ require "session.php";
                 <img src="user.jpg" alt="Portrait de l'utilisateur"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?> (n° <?= $userId ?>)</p>
+                    <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?></p>
                 </section>
             </aside>
             
             <main>
-                <form action="wall.php" method="post">
+                <form action="wall.php" method="post" class="fenetre">
                     <dl>
                         <dt><label for='message'>Message</label></dt>
                         <dd><textarea name='message'></textarea></dd>

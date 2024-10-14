@@ -1,6 +1,10 @@
 body {
-    background-color: #003;
+    background-color: rgb(147, 147, 143);
     font-family: Arial;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 a {
@@ -92,7 +96,7 @@ body > header #user:hover ul {
     flex: 3;
     padding-left: 1em;
     height: 80vh;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 #wrapper main article {
     background-color: #fff;
@@ -189,17 +193,32 @@ pre {
     color: #aaa;
 }
 
+form dl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 form dl dt {
     float: left;
     font-weight: bold;
     line-height: 1.5em;
 }
 form dl dd {
-    margin-left: 10em;
     line-height: 1.5em;
     margin-bottom: 1em;
 }
 form dl dd textarea {
-    width: 40em;
+    width: 30em;
     height: 15em;
+}
+
+form.fenetre dl dd textarea {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    width: 60em;
+    height: 10em;
 }
