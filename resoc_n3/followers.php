@@ -16,7 +16,7 @@ require "session.php";
         ?>
         <div id="wrapper">          
             <aside>
-                <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>
+                <img src = "img-2.jpg" alt = "Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes qui
@@ -48,7 +48,7 @@ require "session.php";
                     //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="img-2.jpg" alt="blason"/>
                     <h3><?php echo $user["alias"] ; ?></h3>
                     <p>id:<?php echo $user["id"] ; ?></p> 
                 </article>

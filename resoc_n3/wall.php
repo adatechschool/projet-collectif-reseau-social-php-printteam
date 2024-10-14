@@ -28,7 +28,7 @@ require "session.php";
             ?>
             
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisateur"/>
+                <img src="img-2.jpg" alt="Portrait de l'utilisateur"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?></p>
