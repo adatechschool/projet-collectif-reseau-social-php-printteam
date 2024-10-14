@@ -242,54 +242,35 @@ form.fenetre dl dd textarea {
     margin-bottom: 0; /* Supprime la marge inférieure */
 }
 
-form.fenetre .button-container {
-    display: flex;
-    justify-content: flex-end; /* Aligne le bouton à droite */
-    width: 100%; /* S'assure que la largeur du bouton est de 100% du formulaire */
-    margin-top: 0; /* Supprime la marge entre le textarea et le bouton */
-}
-
-form.fenetre .button-container input[type="submit"] {
-    background-color: #99b;
-    border: none;
-    padding: 0.5em 1.5em;
-    border-radius: 0.5em;
-    cursor: pointer;
-    margin-bottom: 3em;
-}
-
-form.fenetre .button-container input[type="submit"]:hover {
-    background-color: #888;
-}
-
 .button-1 {
-  background-color: #EA4C89;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    background-color: #ea4c89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+        sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .button-1:hover,
 .button-1:focus {
-  background-color: #F082AC;
+    background-color: #f082ac;
 }

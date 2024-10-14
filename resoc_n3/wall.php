@@ -41,13 +41,8 @@ require "session.php";
                         <dt><label for='message'>Message</label></dt>
                         <dd><textarea name='message'></textarea></dd>
                     </dl>
-<<<<<<< Updated upstream
                     <input type='submit' value="Envoyer" class="button-1">
-=======
-                    <div class="button-container">
-                    <input type='submit' value="Envoyer">
-                    </div>
->>>>>>> Stashed changes
+
                 </form> 
                 
                 <?php
