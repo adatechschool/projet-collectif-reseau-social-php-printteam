@@ -1,3 +1,8 @@
+<?php
+require "session.php";
+?>
+
+
 <!doctype html>
 <html lang="fr">
     <head>

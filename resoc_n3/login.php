@@ -1,13 +1,3 @@
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-if (isset($_SESSION["connected_id"])) {
-$user_id=$_SESSION["connected_id"];
-} else {
-   $user_id= 5; 
-}
-?>
 <!doctype html>
 <html lang="fr">
     <head>

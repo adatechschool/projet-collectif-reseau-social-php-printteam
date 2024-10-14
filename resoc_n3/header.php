@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if (isset($_SESSION["connected_id"])) {
 $user_id=$_SESSION["connected_id"];
 } else {
-   $user_id= 5; 
+ $user_id=5;
 }
 ?>
 
