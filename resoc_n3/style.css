@@ -38,7 +38,7 @@ body > header #menu a {
     border-right: 1px solid #99b;
 }
 body > header a:hover {
-    background-color: #99b;
+    background-color: #ea4c89;
 }
 body > header ul {
     list-style: none;
@@ -244,6 +244,7 @@ form.fenetre dl dd textarea {
 
 .button-1 {
     background-color: #ea4c89;
+    align-items: flex-end;
     border-radius: 8px;
     border-style: none;
     box-sizing: border-box;
@@ -268,6 +269,8 @@ form.fenetre dl dd textarea {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    width: auto; /* Permet au bouton de s'ajuster à son contenu */
+    max-width: 150px; /* Limite la largeur maximale du bouton */
 }
 
 .button-1:hover,
