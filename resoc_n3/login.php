@@ -1,4 +1,13 @@
-
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION["connected_id"])) {
+$user_id=$_SESSION["connected_id"];
+} else {
+   $user_id= 5; 
+}
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -65,6 +74,10 @@
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id']=$user['id'];
+                            $userId=$_SESSION['connected_id'];
+                            header("Location: wall.php?user_id=$userId");
+                            exit();
+
                         }
                     }
                     ?>                     

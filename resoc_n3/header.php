@@ -23,6 +23,7 @@ $user_id=$_SESSION["connected_id"];
                     <li><a href="settings.php?user_id=<?= $user_id?>">Paramètres</a></li>
                     <li><a href="followers.php?user_id=<?= $user_id?>">Mes suiveurs</a></li>
                     <li><a href="subscriptions.php?user_id=<?= $user_id?>">Mes abonnements</a></li>
+                    <li><a href="logout.php?user_id=<?= $user_id?>">Se deconnecter</a></li>
                 </ul>
 
             </nav>
