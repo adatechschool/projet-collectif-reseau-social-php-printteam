@@ -42,3 +42,9 @@ while ($tag = $lesInformations->fetch_assoc()){
 - Gestion du bouton like et traitement
 - création du fichier abo qui gère le traitement follow/unfollow des users
 - refacto du bouton follow
+
+## Track Jour 5 : 14 Octobre 2024
+
+- Lors de l'inscription au réseau social, le site redirige maintenant vers la page de login.
+- Modification d'une erreur qui faisait que si l'user n'est pas logged, la page fux affaichait le flux de la personne d'ID n°5. Cela a été remplacé par une redirection vers login.php
+- Ajout d'un bouton de déconnection de la session.

@@ -77,7 +77,7 @@
                             <dt><label  for='motpasse'>Mot de passe</label></dt>
                             <dd><input aria-describedby="la chaaaaaatte password" type='password'name='motpasse'></dd>
                         </dl>
-                        <input type='submit'>
+                        <input type='submit' class="button-1">
                         <p>Nous collectons vos données personnelles pour vous offrir un service personnalisé. En acceptant, vous consentez à ce que nous stockions et traitions ces données conformément à notre <a href="/privacy-policy">politique de confidentialité</a>.</p>
                         <label>
                             <input type="checkbox" required /> J'accepte que mes données soient stockées et traitées.

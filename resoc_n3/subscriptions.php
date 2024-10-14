@@ -27,7 +27,7 @@ $userId = intval($_GET['user_id']);
                     </p>
                     <form method="post" action="abo.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="user_id" value="<?= $userId ?>">
-                                <button type="submit">follow me</button>
+                                <button type="submit" class="button-1">follow me</button>
                     </form>
                 </section>
             </aside>
@@ -60,7 +60,7 @@ $userId = intval($_GET['user_id']);
                     <img src="user.jpg" alt="blason"/>
                     <form method="post" action="abo.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                <button type="submit">
+                                <button type="submit" class="button-1">
                                     <?php
                                     if (isFollowing($monId,$user['id'])==false){
                                         echo "Follow";

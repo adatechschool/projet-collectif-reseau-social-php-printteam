@@ -122,7 +122,7 @@ require "session.php";
                         <footer>
                             <form method="post" action="like.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                                <button type="submit">♥ <?= $post['like_number'] ?></button>
+                                <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
                             </form>
                             <a href="">#<?= $post['taglist'] ?></a>
                         </footer>
