@@ -47,12 +47,15 @@ body > header #user {
     margin-left: auto;
     flex: 0.2;
     border-left: 1px solid #99b;
+    display: flex;
 }
+
 body > header #user > a {
     display: block;
     text-align: center;
     padding: 2em 0;
     width: 100%;
+    flex: 1;
 }
 body > header #user ul {
     display: none;
@@ -239,7 +242,7 @@ form.fenetre dl dd textarea {
     border-radius: 1em;
     padding: 1em;
     background-color: #fff;
-    margin-bottom: 0; /* Supprime la marge inférieure */
+    margin-bottom: 1em; /* Supprime la marge inférieure */
 }
 
 .button-1 {
@@ -271,9 +274,42 @@ form.fenetre dl dd textarea {
     touch-action: manipulation;
     width: auto; /* Permet au bouton de s'ajuster à son contenu */
     max-width: 150px; /* Limite la largeur maximale du bouton */
+    margin-bottom: 2em;
 }
 
 .button-1:hover,
 .button-1:focus {
     background-color: #f082ac;
+}
+
+/* Texte défilant */
+.scrolling-message-container {
+    width: 77%; /* La même largeur que le header */
+    height: 40px; /* Hauteur du message défilant */
+    overflow: hidden; /* Cache le texte qui dépasse */
+    background-color: #ffefef; /* Arrière-plan du message */
+    margin: 0 auto; /* Centre la div */
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+#scrolling-message {
+    white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
+    display: inline-block;
+    animation: scroll 20s linear infinite; /* Animation de défilement */
+    font-size: 16px;
+    color: #333;
+}
+
+/* Animation pour le défilement */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%); /* Commence à droite */
+    }
+    100% {
+        transform: translateX(-100%); /* Défile vers la gauche */
+    }
 }
