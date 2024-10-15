@@ -57,7 +57,7 @@ include "utilesFonctions.php";
 
                     //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
-                <article>
+                <article class="article-follower">
                     <img src="img-2.jpg" alt="blason"/>
                     <form method="post" action="abo.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
