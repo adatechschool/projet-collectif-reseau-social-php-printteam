@@ -30,5 +30,5 @@ $user_id=$_SESSION["connected_id"];
 </header>
 
 <div class="scrolling-message-container">
-    <p id="scrolling-message">Le réseau social des Printeurs ! Print ! Print <strong>Elodie</strong> ! Print <strong>Thomas</strong> ! Print <strong>Driss</strong> ! Print <strong>Ruth</strong> ! Print <strong>Nathan</strong> ! Print <strong>Queen Mumu</strong> ! Print <strong>Julien</strong> ! Print <strong>Yennie</strong> ! Print <strong>Stéphane</strong> ! Print <strong>Olivia</strong> ! Print <strong>Solena</strong> ! Print <strong>Fiona</strong> ! </p>
+    <p id="scrolling-message">Le réseau social des Printeurs ! Pour tous les printeeeeeeurs ! Print <strong>Elodie</strong> ! Print <strong>Thomas</strong> ! Print <strong>Driss</strong> ! Print <strong>Ruth</strong> ! Print <strong>Nathan</strong> ! Print <strong>Queen Mumu</strong> ! Print <strong>Julien</strong> ! Print <strong>Yennie</strong> ! Print <strong>Stéphane</strong> ! Print <strong>Olivia</strong> ! Print <strong>Solena</strong> ! Print <strong>Fiona</strong> ! Print <strong>Valentin</strong> ! Print <strong>Tailtail</strong> ! </p>
 </div>

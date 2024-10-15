@@ -11,6 +11,7 @@ a {
     text-decoration: none;
     color: black;
 }
+
 a:hover {
     text-decoration: underline;
 }
@@ -22,27 +23,33 @@ body > header {
     margin: 0 auto 2em auto;
     padding: 0;
 }
+
 body > header img {
     height: 5em;
 }
+
 body > header #menu {
     display: flex;
     width: 50%;
     align-items: stretch;
     border-left: 1px solid #99b;
 }
+
 body > header #menu a {
     flex: 1;
     text-align: center;
     padding-top: 2em;
     border-right: 1px solid #99b;
 }
+
 body > header a:hover {
     background-color: #ea4c89;
 }
+
 body > header ul {
     list-style: none;
 }
+
 body > header #user {
     margin-left: auto;
     flex: 0.2;
@@ -57,6 +64,7 @@ body > header #user > a {
     width: 100%;
     flex: 1;
 }
+
 body > header #user ul {
     display: none;
     position: absolute;
@@ -65,15 +73,16 @@ body > header #user ul {
     margin-left: -5em;
     background-color: #fff;
     border: 1px solid #99b;
-
     z-index: 1;
 }
+
 body > header #user ul li a {
     display: block;
     width: 10em;
     padding: 1em;
     border-bottom: 1px solid #99b;
 }
+
 body > header #user:hover ul {
     display: block;
 }
@@ -83,12 +92,14 @@ body > header #user:hover ul {
     width: 80em;
     margin: 0 auto 2em auto;
 }
+
 #wrapper aside {
     background-color: #fff;
     flex: 1;
     padding: 1em;
     border-radius: 1em;
 }
+
 #wrapper aside img {
     display: block;
     width: 50%;
@@ -99,34 +110,40 @@ body > header #user:hover ul {
     flex: 3;
     padding-left: 1em;
     height: 80vh;
-    /* overflow-y: scroll; */
 }
+
 #wrapper main article {
     background-color: #fff;
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 1em;
 }
+
 #wrapper main article h3 {
     margin: 0;
     padding: 0;
     font-weight: normal;
     font-size: 1em;
 }
+
 #wrapper main article time {
     float: left;
 }
+
 #wrapper main article address {
     text-align: right;
     margin-bottom: 1em;
 }
+
 #wrapper main article p {
     margin: 0;
 }
+
 #wrapper main article footer {
     margin-top: 1em;
     text-align: right;
 }
+
 #wrapper main article footer small {
     float: left;
 }
@@ -134,66 +151,58 @@ body > header #user:hover ul {
 #wrapper.admin {
     flex-direction: row-reverse;
 }
+
 #wrapper.admin aside {
     flex: 1;
     margin-left: 1em;
     border-radius: 0;
     padding: 0;
 }
+
 #wrapper.admin main {
     flex: 2;
     background-color: #fff;
     border-radius: 0;
     padding: 0;
 }
+
 #wrapper.admin h2 {
     text-align: center;
 }
+
 #wrapper.admin h3 {
     margin: 0;
+    color: #ea4c89;
 }
+
 #wrapper.admin nav {
     text-align: right;
 }
+
 #wrapper.admin article {
     border: 1px solid #ddd;
     border-radius: 1em;
     padding: 1em;
     margin: 1em;
 }
+
 #wrapper.admin article p {
     float: left;
     margin: 0;
 }
 
-.parameters dl dt {
+.parameters dl dt,
+form dl dt,
+form.fenetre dl dt {
     float: left;
     font-weight: bold;
     line-height: 1.5em;
 }
-.parameters dl dd {
+
+.parameters dl dd,
+form dl dd {
     margin-left: 15em;
     line-height: 1.5em;
-}
-
-.contacts {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start;
-}
-.contacts article {
-    width: 25em;
-    height: 7em;
-    margin-right: 1em;
-}
-.contacts article img {
-    float: right;
-    height: 5em;
-}
-
-pre {
-    color: #aaa;
 }
 
 form dl {
@@ -203,37 +212,35 @@ form dl {
     flex-direction: column;
 }
 
-form dl dt {
-    float: left;
-    font-weight: bold;
-    line-height: 1.5em;
-}
-form dl dd {
+form dl dd,
+form.fenetre dl dd {
     line-height: 1.5em;
     margin-bottom: 1em;
     margin-inline-start: 0;
 }
-form dl dd textarea {
+
+form dl dd textarea,
+form.fenetre dl dd textarea {
     width: 30em;
     height: 15em;
 }
 
 form.fenetre {
     display: flex;
-    flex-direction: column; /* Les éléments sont empilés verticalement */
-    width: 60em; /* Ajuste selon tes besoins */
+    flex-direction: column;
+    width: 60em;
 }
 
 form.fenetre dl {
     width: 100%;
-    margin: 0; /* Supprime toute marge supplémentaire */
+    margin: 0;
 }
 
 form.fenetre dl dd {
     display: flex;
-    justify-content: center; /* Centre la zone de texte */
+    justify-content: center;
     width: 100%;
-    margin: 0; /* Supprime la marge entre le textarea et le bouton */
+    margin: 0;
 }
 
 form.fenetre dl dd textarea {
@@ -242,7 +249,7 @@ form.fenetre dl dd textarea {
     border-radius: 1em;
     padding: 1em;
     background-color: #fff;
-    margin-bottom: 1em; /* Supprime la marge inférieure */
+    margin-bottom: 1em;
 }
 
 .button-1 {
@@ -272,8 +279,8 @@ form.fenetre dl dd textarea {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: auto; /* Permet au bouton de s'ajuster à son contenu */
-    max-width: 150px; /* Limite la largeur maximale du bouton */
+    width: auto;
+    max-width: 150px;
     margin-bottom: 2em;
 }
 
@@ -282,13 +289,12 @@ form.fenetre dl dd textarea {
     background-color: #f082ac;
 }
 
-/* Texte défilant */
 .scrolling-message-container {
-    width: 77%; /* La même largeur que le header */
-    height: 40px; /* Hauteur du message défilant */
-    overflow: hidden; /* Cache le texte qui dépasse */
-    background-color: #ffefef; /* Arrière-plan du message */
-    margin: 0 auto; /* Centre la div */
+    width: 77%;
+    height: 40px;
+    overflow: hidden;
+    background-color: #ffefef;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     position: relative;
@@ -297,19 +303,18 @@ form.fenetre dl dd textarea {
 }
 
 #scrolling-message {
-    white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
+    white-space: nowrap;
     display: inline-block;
-    animation: scroll 20s linear infinite; /* Animation de défilement */
+    animation: scroll 20s linear infinite;
     font-size: 16px;
     color: #333;
 }
 
-/* Animation pour le défilement */
 @keyframes scroll {
     0% {
-        transform: translateX(100%); /* Commence à droite */
+        transform: translateX(100%);
     }
     100% {
-        transform: translateX(-100%); /* Défile vers la gauche */
+        transform: translateX(-100%);
     }
 }
