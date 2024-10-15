@@ -19,7 +19,7 @@ include "utilesFonctions.php";
         ?>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="img-2.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
@@ -61,7 +61,7 @@ include "utilesFonctions.php";
                         //puis générer le bouton adéquat
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="img-2.jpg" alt="blason"/>
                     <form method="post" action="abo.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                 <button type="submit" class="button-1">
