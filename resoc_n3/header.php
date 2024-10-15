@@ -18,7 +18,9 @@ $user_id=$_SESSION["connected_id"];
         <a href="tags.php?tag_id=1">Mots-clés</a>
     </nav>
     <nav id="user">
-        <img src="img-3.jpg" alt="" srcset="">
+        <div class="image">
+            <img src="img-3.jpg" alt="" srcset="">
+        </div>
         <a href="#">Profil</a>
         <ul>
             <li><a href="settings.php?user_id=<?= $user_id?>">Paramètres</a></li>
