@@ -111,7 +111,7 @@ include "utilesFonctions.php";
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
                                 <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
                         </form>
-                        <a href="">#<?= $post['taglist']?></a>,
+                        <a href="">#<?= $post['taglist']?></a>
                     </footer>
                 </article>
                 <?php
