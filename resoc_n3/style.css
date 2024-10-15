@@ -121,7 +121,6 @@ body > header #user:hover ul {
 #wrapper main {
     flex: 3;
     padding-left: 1em;
-    height: 80vh;
 }
 
 #wrapper main article {
