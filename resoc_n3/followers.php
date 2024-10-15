@@ -58,8 +58,7 @@ include "utilesFonctions.php";
                     //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <article>
-<<<<<<< HEAD
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="img-2.jpg" alt="blason"/>
                     <form method="post" action="abo.php?user_id=<?= $userId ?>">
                                 <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                 <button type="submit" class="button-1">
@@ -68,9 +67,6 @@ include "utilesFonctions.php";
                                     ?>
                                 </button>
                     </form>
-=======
-                    <img src="img-2.jpg" alt="blason"/>
->>>>>>> lapaire
                     <h3><?php echo $user["alias"] ; ?></h3>
                     <p>id:<?php echo $user["id"] ; ?></p> 
                 </article>
