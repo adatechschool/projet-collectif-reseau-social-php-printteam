@@ -48,3 +48,5 @@ while ($tag = $lesInformations->fetch_assoc()){
 - Lors de l'inscription au réseau social, le site redirige maintenant vers la page de login.
 - Modification d'une erreur qui faisait que si l'user n'est pas logged, la page fux affaichait le flux de la personne d'ID n°5. Cela a été remplacé par une redirection vers login.php
 - Ajout d'un bouton de déconnection de la session.
+- CSS des boutons
+- CSS de la nav-bar
