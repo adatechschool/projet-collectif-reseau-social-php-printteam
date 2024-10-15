@@ -1,8 +1,31 @@
 <?php
 require "session.php";
+include "utilesFonctions.php";
+
+
+include "connect.php";
+
+// Gestion de l'envoi d'un message
+if (isset($_POST['message'])) {
+    $postContent = $mysqli->real_escape_string($_POST['message']);
+
+    // Construction et exécution de la requête d'insertion
+    $lInstructionSql = "
+        INSERT INTO posts (id, user_id, content, created, parent_id)
+        VALUES (NULL, {$_SESSION['connected_id']}, '$postContent', NOW(), NULL)";
+    
+    if (!$mysqli->query($lInstructionSql)) {
+        echo "Impossible d'ajouter le message: " . $mysqli->error;
+    } else {
+        // Redirection après l'envoi du message
+        header('Location: wall.php?user_id=' . $_SESSION['connected_id']);
+        exit(); // Toujours utiliser exit après une redirection
+    }
+}
+
+// Récupérer l'id de l'utilisateur via le paramètre GET
 $userId = intval($_GET['user_id']);
 $monId = $_SESSION['connected_id'];
-include "utilesFonctions.php";
 ?>
 
 <!doctype html>
@@ -18,12 +41,6 @@ include "utilesFonctions.php";
         
         <div id="wrapper">
             <?php
-            // Récupérer l'id de l'utilisateur via le paramètre GET
-            $userId = intval($_GET['user_id']);
-            
-            // Connexion à la base de données
-            include "connect.php";
-
             // Récupérer les informations de l'utilisateur
             $laQuestionEnSql = "SELECT * FROM users WHERE id='$userId'";
             $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -48,10 +65,9 @@ include "utilesFonctions.php";
                 <form action="wall.php" method="post" class="fenetre">
                     <dl>
                         <dt><label for='message'>Message</label></dt>
-                        <dd><textarea name='message'></textarea></dd>
+                        <dd><textarea required name='message'></textarea></dd>
                     </dl>
                     <input type='submit' value="Envoyer" class="button-1">
-
                 </form> 
                 
                 <?php
@@ -96,26 +112,6 @@ include "utilesFonctions.php";
                         </footer>
                     </article>
                 <?php } ?>
-                
-                <?php
-                // Gestion de l'envoi d'un message
-                if (isset($_POST['message'])) {
-                    $postContent = $mysqli->real_escape_string($_POST['message']);
-                    
-                    // Construction et exécution de la requête d'insertion
-                    $lInstructionSql = "
-                        INSERT INTO posts (id, user_id, content, created, parent_id)
-                        VALUES (NULL, {$_SESSION['connected_id']}, '$postContent', NOW(), NULL)";
-                    
-                    if (!$mysqli->query($lInstructionSql)) {
-                        echo "Impossible d'ajouter le message: " . $mysqli->error;
-                    } else {
-                        echo "Message posté.";
-                        header('Location: wall.php?user_id=' . $_SESSION['connected_id']);
-                        exit();
-                    }
-                }
-                ?>
             </main>
         </div>
     </body>
