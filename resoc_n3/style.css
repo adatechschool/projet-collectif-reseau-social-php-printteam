@@ -302,7 +302,7 @@ form.fenetre dl dd textarea {
 }
 
 .scrolling-message-container {
-    width: 76%;
+    width: 1280px;
     height: 40px;
     overflow: hidden;
     background-color: #ffefef;
