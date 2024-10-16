@@ -30,4 +30,10 @@ function checkLike (){
     }
 }
 
+function showProfilPicture($picture){
+    return is_null($picture) ? "img-2.jpg":"uploads/".$picture;
+}
+
+
+
 ?>

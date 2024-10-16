@@ -51,8 +51,22 @@ $monId = $_SESSION['connected_id'];
         $lesInformations = $mysqli->query($laQuestionEnSql);
         $user = $lesInformations->fetch_assoc();
         ?>
-        
+
         <aside>
+            <img src=<?= showProfilPicture($user['picture']) ; ?> alt="blason"/>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez tous les messages de l'utilisateur : <?= $user['alias'] ?></p>
+                    <form method="post" action="abo.php?user_id=<?= $userId ?>">
+                        <input type="hidden" name="user_id" value="<?= $userId ?>">
+                        <button type="submit" class="button-1"><?php  
+                                    echo isFollowing($monId,$userId) ?"Unfollow":"Follow";
+                                    ?></button>
+                    </form>
+                </section>
+        </aside>
+        
+        <!-- <aside>
             <img src="img-2.jpg" alt="Portrait de l'utilisateur"/>
             <section>
                 <h3>Présentation</h3>
@@ -64,7 +78,7 @@ $monId = $_SESSION['connected_id'];
                                 ?></button>
                 </form>
             </section>
-        </aside>
+        </aside> -->
         
         <main>
             <form action="wall.php" method="post" class="fenetre">
