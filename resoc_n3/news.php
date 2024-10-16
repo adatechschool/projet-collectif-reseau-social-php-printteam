@@ -23,11 +23,10 @@ function extractVideoId($url) {
         ?>
         <div id="wrapper">
             <aside>
-                <img src="img-2.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="nicolas.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages de
-                        tous les utilisatrices du site.</p>
+                    <p>Je suis la git Machine, un problème sollicite moi et je t'aiderais à réecrire l'histoire #git push --force</p>
                 </section>
             </aside>
             <main>
@@ -81,24 +80,24 @@ function extractVideoId($url) {
                 {
                     ?>
                     <article>
-                        <h3>
-                            <time><?php echo $post['created'] ?></time>
-                        </h3>
-                        <address><?php echo $post['author_name'] ?></address>
-                        <div>
-                            <p><?php echo $post['content'] ?></p>
-                        </div>
-                        <?php if (!empty($post['video_url'])): ?>
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= extractVideoId($post['video_url']); ?>" frameborder="0" allowfullscreen></iframe>
-                        <?php endif; ?>
-                        <footer>
-                            <form method="post" action="like.php?user_id=<?= $userId ?>">
-                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                                <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
-                            </form>
-                            <a href="" class="tags">#<?= $post['taglist'] ?></a>
-                        </footer>
-                    </article>
+                            <h3>
+                                <time><?php echo $post['created'] ?></time>
+                            </h3>
+                            <address><?php echo $post['author_name'] ?></address>
+                            <div class="post-content">
+                                <p class="message-text"><?php echo $post['content'] ?></p> <!-- Ajout d'une classe pour le texte -->
+                            </div>
+                            <?php if (!empty($post['video_url'])): ?>
+                                <iframe class="post-video" width="560" height="315" src="https://www.youtube.com/embed/<?= extractVideoId($post['video_url']); ?>" frameborder="0" allowfullscreen></iframe> <!-- Ajout d'une classe pour la vidéo -->
+                            <?php endif; ?>
+                            <footer>
+                                <form method="post" action="like.php?user_id=<?= $userId ?>">
+                                    <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                    <button type="submit" class="button-1">♥ <?= $post['like_number'] ?></button>
+                                </form>
+                                <a href="" class="tags">#<?= $post['taglist'] ?></a>
+                            </footer>
+                        </article>
                     <?php
                     // avec le <?php ci-dessus on retourne en mode php 
                 }// cette accolade ferme et termine la boucle while ouverte avant.

@@ -121,10 +121,10 @@ $monId = $_SESSION['connected_id'];
                         <time datetime="<?= $post['created'] ?>"><?= $post['created'] ?></time>
                     </h3>
                     <address><?= $post['author_name'] ?></address>
-                    <div>
-                        <p><?= $post['content'] ?></p>
+                    <div class="post-content">
+                        <p class="message-text"><?= $post['content'] ?></p> <!-- Classe pour le message -->
                         <?php if (!empty($post['video_url'])): ?>
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= extractVideoId($post['video_url']); ?>" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="post-video" width="560" height="315" src="https://www.youtube.com/embed/<?= extractVideoId($post['video_url']); ?>" frameborder="0" allowfullscreen></iframe> <!-- Classe pour la vidéo -->
                         <?php endif; ?>
                     </div>
                     <footer>
@@ -135,6 +135,7 @@ $monId = $_SESSION['connected_id'];
                         <a href="" class="tags">#<?= $post['taglist'] ?></a>
                     </footer>
                 </article>
+
             <?php } ?>
         </main>
     </div>

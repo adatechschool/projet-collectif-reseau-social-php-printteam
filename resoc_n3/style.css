@@ -336,3 +336,18 @@ form.fenetre dl dd textarea {
 .tags {
     color: #ea4c89;
 }
+
+.post-content {
+    display: flex;
+    flex-direction: column; /* Affiche le texte et la vidéo l'un en dessous de l'autre */
+}
+
+.message-text {
+    margin-bottom: 10px; /* Ajoute un espacement en dessous du texte du message */
+}
+
+.post-video {
+    margin-top: 50px;
+    margin-left: 50px; /* Ajoute un espacement au-dessus de la vidéo */
+    border: none; /* Supprime la bordure par défaut de l'iframe si elle existe */
+}
