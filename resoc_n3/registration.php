@@ -19,63 +19,66 @@
                 <article>
                     <h2>Inscription</h2>
                     <?php
-                    /**
-                     * TRAITEMENT DU FORMULAIRE
-                     */
-                    // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
-                    // si on recoit un champs email rempli il y a une chance que ce soit un traitement
-                    $enCoursDeTraitement = isset($_POST['email']);
-                    if ($enCoursDeTraitement)
-                    {
-                        // on ne fait ce qui suit que si un formulaire a été soumis.
-                        // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
-                        // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
-                        //echo "<pre>" . print_r($_POST, 1) . "</pre>";
-                        // et complétez le code ci dessous en remplaçant les ???
-                        $new_email = $_POST['email'];
-                        $new_alias = $_POST['pseudo'];
-                        $new_passwd = $_POST['motpasse'];
+                        $enCoursDeTraitement = isset($_POST['email']);
+                        if ($enCoursDeTraitement) {
+                            // Récupérer les données du formulaire
+                            $new_email = $_POST['email'];
+                            $new_alias = $_POST['pseudo'];
+                            $new_passwd = $_POST['motpasse'];
+                            $new_passwd = md5($new_passwd);  // Hash du mot de passe
+                            
+                            if (isset($_FILES['profil-picture']) && $_FILES['profil-picture']['error'] === UPLOAD_ERR_OK) {
+                                $fileTmpPath = $_FILES['profil-picture']['tmp_name'];
+                                $fileName = $_FILES['profil-picture']['name'];
+                                $fileSize = $_FILES['profil-picture']['size'];
+                                $fileType = $_FILES['profil-picture']['type'];
+                                $fileNameCmps = explode(".", $fileName);
+                                $fileExtension = strtolower(end($fileNameCmps));
 
+                                $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+                                if (in_array($fileExtension, $allowedfileExtensions)) {
+                                    $uploadFileDir = './uploads/';
+                                    $dest_path = $uploadFileDir . $fileName;
 
-                        //Etape 3 : Ouvrir une connexion avec la base de donnée.
-                        include("connect.php");
-                        //Etape 4 : Petite sécurité
-                        // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
-                        $new_email = $mysqli->real_escape_string($new_email);
-                        $new_alias = $mysqli->real_escape_string($new_alias);
-                        $new_passwd = $mysqli->real_escape_string($new_passwd);
-                        // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
-                        $new_passwd = md5($new_passwd);
-                        // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
-                        //Etape 5 : construction de la requete
-                        $lInstructionSql = "INSERT INTO users (id, email, password, alias) "
-                                . "VALUES (NULL, "
-                                . "'" . $new_email . "', "
-                                . "'" . $new_passwd . "', "
-                                . "'" . $new_alias . "'"
-                                . ");";
-                        // Etape 6: exécution de la requete
-                        $ok = $mysqli->query($lInstructionSql);
-                        if ( ! $ok)
-                        {
-                            echo "L'inscription a échouée : " . $mysqli->error;
-                        } else
-                        {
-                            //echo "Votre inscription est un succès : " . $new_alias;
-                            header('Location: login.php');
-                            exit();
+                                    if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                                        echo 'Le fichier a été téléchargé avec succès.';
+                                        
+                                        include("connect.php");
+                                        $new_email = $mysqli->real_escape_string($new_email);
+                                        $new_alias = $mysqli->real_escape_string($new_alias);
+                                        $new_picture = $mysqli->real_escape_string($fileName);
+                                        $lInstructionSql = "INSERT INTO users (email, password, alias, picture) "
+                                                . "VALUES ('" . $new_email . "', '" . $new_passwd . "', '" . $new_alias . "', '" . $new_picture . "');";
+                                        $ok = $mysqli->query($lInstructionSql);
+                                        if ($ok) {
+                                            echo "Votre inscription est un succès : " . $new_alias;
+                                                header('Location: login.php');
+                                                exit();
+                                        } else {
+                                            echo "Erreur lors de l'inscription : " . $mysqli->error;
+                                        }
+                                    } else {
+                                        echo 'Erreur lors du déplacement du fichier.';
+                                    }
+                                } else {
+                                    echo 'Type de fichier non autorisé.';
+                                }
+                            } else {
+                                echo 'Erreur lors de l\'envoi de l\'image.';
+                            }
                         }
-                    }
                     ?>  
 
-                    <form action="registration.php" method="post">
+                    <form action="registration.php" method="post" enctype="multipart/form-data">
                         <dl>
                             <dt><label  for='pseudo'>Pseudo</label></dt>
                             <dd><input aria-describedby="la chaaaaaatte pseudo" type='text'name='pseudo'></dd>
                             <dt><label  for='email'>E-Mail</label></dt>
                             <dd><input aria-describedby="la chaaaaaatte email" type='email'name='email'></dd>
                             <dt><label  for='motpasse'>Mot de passe</label></dt>
-                            <dd><input aria-describedby="la chaaaaaatte password" type='password'name='motpasse'></dd>
+                            <dd><input aria-describedby="la chaaaaatte motpasse" type='password'name='motpasse'></dd>
+                            <dt><label  for='profil-picture'>Ajouter une photo de profil</label></dt>
+                            <dd><input aria-describedby="image" type='file' name='profil-picture'></dd>
                         </dl>
                         <input type='submit' class="button-1">
                         <p>Nous collectons vos données personnelles pour vous offrir un service personnalisé. En acceptant, vous consentez à ce que nous stockions et traitions ces données conformément à notre <a href="/privacy-policy">politique de confidentialité</a>.</p>
